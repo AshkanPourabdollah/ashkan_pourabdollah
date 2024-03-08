@@ -1,0 +1,114 @@
+{% extends 'clothes_app/base.html' %}
+{% load static %}
+{%block body%}
+<div class="main-banner" id="top">
+  <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-12">
+        <style>
+            body {
+              font-family: Arial, sans-serif;
+              background-color: #f2f2f2;
+            }
+            
+            .container_center {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              height: 100vh;
+            }
+            
+            .form-container {
+              max-width: 400px;
+              padding: 20px;
+              background-color: #fff;
+              border-radius: 8px;
+              box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+              animation: fadeIn 0.5s ease-in-out;
+            }
+            
+            h2 {
+              text-align: center;
+              margin-bottom: 20px;
+            }
+            
+            .form-group {
+              margin-bottom: 20px;
+            }
+            
+            label {
+              display: block;
+              font-weight: bold;
+              margin-bottom: 5px;
+            }
+            
+            input[type="text"],
+            input[type="password"] {
+              width: 100%;
+              padding: 10px;
+              border: 1px solid #ccc;
+              border-radius: 4px;
+            }
+            
+            input[type="submit"] {
+              display: block;
+              width: 100%;
+              padding: 10px;
+              background-color: #112412;
+              color: #fff;
+              border: none;
+              border-radius: 4px;
+              cursor: pointer;
+            }
+            
+            input[type="submit"]:hover {
+              background-color: #295c2b;
+            }
+          </style>
+        <div class="container_center" dir="rtl">
+          <div class="form-container" style="width: 70%;">
+            <br/><br/>
+            <h2>ثبت نام</h2>
+            <form id="registration-form" method="post">
+
+              {%csrf_token%}
+
+              <div class="form-group">
+                <label for="name" id="right">نام و نام خانوادگی:</label>
+                <input type="text" id="name" name="name" required>
+              </div>
+              <div class="form-group">
+                <label id="right">تلفن همراه : </label>
+                <input type="text" id="phone" name="phone" required>
+              </div>
+              <div class="form-group">
+                <label for="password"  id="right">رمز عبور:</label>
+                <input type="password" id="password" name="password" required>
+              </div>
+              <div class="form-group">
+                <label for="password"  id="right">تکرار رمز عبور : </label>
+                <input type="password" id="password_confirm" name="password_confirm" required>
+              </div>
+              <input type="submit" value="ثبت نام">
+              <br/><p id="right"> اگر حسابی دارید <a href="{%url 'login'%}"> وارد شوید </a></p>
+            </form>
+            {%for item in error%}
+            <h6 style="color: red;" id="right">{{item}}</h6>
+            {%endfor%}
+          </div>
+        </div>
+        
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script>
+          $(document).ready(function() {
+            // با استفاده از jQuery، انیمیشن باز شدن فرم را ایجاد کنید
+            $(".form-container").hide().fadeIn(1000);
+            
+            
+          });
+        </script>
+</div>
+</div>
+</div>
+</div>
+{%endblock%}

@@ -1,0 +1,92 @@
+{% extends 'clothes_app/base.html' %}
+{% load static %}
+{% load humanize %}
+{% block body %}
+
+    <!-- ***** Main Banner Area Start ***** -->
+    <div class="main-banner" id="top">
+        <div class="container-fluid">
+            <div class="row" dir="rtl">
+
+                <style>
+                    .card {
+                        border: 1px solid #ccc;
+                        border-radius: 5px;
+                        padding: 10px;
+                        margin-bottom: 10px;
+                    }
+                    
+                    .card h3 {
+                        margin-top: 0;
+                    }
+                    
+                    .card p {
+                        margin-bottom: 0;
+                    }
+                </style>
+
+                <div class="col-lg-4">
+                    <div class="left-content">
+                        <div class="thumb">
+                            <!--write code here-->
+
+
+                            <div class="card">
+                            <div id="my-animation" style="height: 200px;"></div>
+
+                            <script>
+                              lottie.loadAnimation({
+                                container: document.getElementById('my-animation'),
+                                renderer: 'svg', 
+                                loop: false,
+                                autoplay: true,
+                                path: "{%static 'clothes_app/images/person.json'%}", // مسیر فایل JSON انیمیشن
+                                
+                              });
+                            </script>
+
+                            <h4 id="center">نام و نام خانوادگی</h4>
+                            <h6 id="center">{{ user.name }}</h6>
+                            <br/>
+                            <h4 id="center">تلفن</h4>
+                            <h6 id="center">{{ user.phone }}</h6>
+                            <br><br>
+
+                        </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-8">
+                    <!--write your code here-->
+                    
+                    
+                    
+                    <div id="scrollable-section">
+                    {% if invoice.count != 0%}
+                    {% load humanize %}
+                        {% for item in invoice %}
+                        <form method="post" action="{% url 'invoice' %}">
+                            {% csrf_token %}
+                            <div class="card" dir="rtl">
+                                <input type="hidden" name="item_id" value="{{ item.id }}">
+                                <h3 id="right" style="pointer-events: none;">شماره فاکتور: {{ item.id }}</h3>
+                                <p id="right" style="pointer-events: none;">تاریخ: {{ item.date }}</p>
+                                <p id="right" style="pointer-events: none;">مبلغ پرداخت شده: {{ item.total_price|intcomma }} تومان</p>
+                                <button type="submit" id="right" style="background-color: white; border: none;">برای مشاهده جزئیات کلیک کنید</button>
+                            </div>
+                        </form>
+                        {% endfor %}
+                    {% else %}      
+                    <h3 id="center">هنوز فاکتوری ندارید !</h3>
+                    {% endif %}
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- ***** Main Banner Area End ***** -->
+{% endblock %}

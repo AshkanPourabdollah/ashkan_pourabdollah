@@ -1,0 +1,63 @@
+{%extends 'clothes_app/base.html'%}
+{%load static%}
+{%block body%}
+    <!-- ***** Main Banner Area Start ***** -->
+    <div class="page-heading" id="top">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="inner-content" dir="rtl">
+                        <h2 id="center">از محصولات ما دیدن کنید!</h2>
+                        <span id="center">توجه به جزئیات چیزی است که هگزا را از فروشگاه های دیگر متمایز میکند!</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ***** Main Banner Area End ***** -->
+
+
+    <!-- ***** Products Area Starts ***** -->
+    <section class="section" id="products">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-heading" dir="rtl">
+                        <h2>جدیدترین لباس های ما</h2>
+                        <span>شما بودید که دنبال جدیدترین لباس های روز دنیا بودید؟!پس نگاهی به محصولات ما بندازید!</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row" dir="rtl">
+
+                <!-- ***** Products ***** -->
+                {% load humanize %}
+                {%for item in product%}
+                <div class="col-lg-4">
+                    <div class="item">
+                        <div class="thumb" dir="rtl">
+                            <div class="hover-content">
+                                <ul>
+                                    <li><a href="/single-product/{{item.title}}/"><i class="fa fa-eye"></i></a></li>
+                                    <li><a href="/single-product/{{item.title}}/"><i class="fa fa-shopping-cart"></i></a></li>
+                                </ul>
+                            </div>
+                            <img src="{{item.image.url}}" alt=""  style="width: 350px;" height="350px">
+                        </div>
+                        <div class="down-content" dir="rtl">
+                            <h4 id="right">{{item.title}}</h4>
+                            <span id="right">{{ item.price|intcomma }}</span>
+                            <span id="right">تومان</span>
+                        </div>
+                    </div>
+                </div>
+                {%endfor%}
+                <!-- ***** Products End ***** -->
+
+            </div>
+        </div>
+    </section>
+    <!-- ***** Products Area Ends ***** -->
+{%endblock%}

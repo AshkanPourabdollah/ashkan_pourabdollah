@@ -1,0 +1,108 @@
+{%extends 'clothes_app/base.html'%}
+{%load static%}
+{%block body%}
+    <!-- ***** Main Banner Area Start ***** -->
+    <div class="page-heading" id="top">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="inner-content" dir="rtl">
+                        <h2 id="center">{{product.title}}</h2>
+                        <span id="center">توجه به جزئیات چیزی است که هگزا را از فروشگاه های دیگر متمایز میکند.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ***** Main Banner Area End ***** -->
+
+
+    <!-- ***** Product Area Starts ***** -->
+    <section class="section" id="product">
+        <div class="container">
+            <div class="row">
+              
+            <div class="col-lg-8">
+                <div class="left-images">
+                    <img src="{{product.image.url}}" alt=""  style="width: 500px;" height="500px">
+                </div>
+            </div>
+            <div class="col-lg-4">
+              {% load humanize %}
+              <div class="right-content" dir="rtl">
+                <h4 id="right">{{product.title}}</h4>
+                <span id="right" class="price">{{product.price|intcomma}} تومان</span>
+                <span id="right">{{product.details}}</span>
+                <div class="quantity-content" dir="rtl">
+                  <div class="right-content">
+                    <h5 id="right" dir="rtl">تعداد سفارش</h5>
+                  </div>
+                  <br/>
+                  <div class="right-content">
+                    <div class="quantity buttons_added">
+                      <input type="button" value="-" class="minus">
+                      <input type="number" step="1" min="1" max="" name="quantity" value="1" title="Qty" class="input-text qty text" size="4" pattern="" inputmode="">
+                      <input type="button" value="+" class="plus">
+                    </div>
+                  </div>
+                  <hr/>
+                  <div class="right-content">
+                    <h5 id="total-price" style="text-align: right;">جمع کل : {{ product.price|intcomma }} تومان</h5><br/>
+                  </div>
+                  <div class="total">
+                    <div class="main-border-button">
+                      <a href="#" id="addToCart">اضافه کردن به سبد خرید</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <script>
+              var minusButton = document.querySelector('.minus');
+              var plusButton = document.querySelector('.plus');
+              var quantityInput = document.querySelector('.qty');
+              var totalPrice = document.querySelector('#total-price');
+              var pricePerItem = {{ product.price }};
+              var productName = "{{ product.title }}";
+            
+              minusButton.addEventListener('click', function() {
+                var currentValue = parseInt(quantityInput.value);
+                if (currentValue > 1) {
+                  quantityInput.value = currentValue - 1;
+                }
+                updateTotalPrice();
+              });
+            
+              plusButton.addEventListener('click', function() {
+                var currentValue = parseInt(quantityInput.value);
+                quantityInput.value = currentValue + 1;
+                updateTotalPrice();
+              });
+            
+              document.getElementById('addToCart').addEventListener('click', function(event) {
+                event.preventDefault(); // جلوگیری از رفتن به لینک href
+            
+                var quantity = parseInt(quantityInput.value);
+            
+                // ایجاد URL با پارامترهای GET
+                var url = window.location.href;
+                url += (url.indexOf('?') === -1 ? '?' : '&') + 'quantity=' + quantity ;
+            
+                // انتقال به صفحه با استفاده از درخواست GET
+                window.location.href = url;
+
+              });
+            
+              function updateTotalPrice() {
+                var quantity = parseInt(quantityInput.value);
+                var totalPriceValue = quantity * pricePerItem;
+                totalPriceValue = totalPriceValue.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                totalPrice.textContent = 'جمع کل : ' + totalPriceValue + ' تومان';
+              }
+            </script>
+
+        </div>
+    </section>
+    <!-- ***** Product Area Ends ***** -->
+{%endblock%}

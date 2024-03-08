@@ -1,0 +1,204 @@
+{% extends 'clothes_app/base.html' %}
+{% load static %}
+{% load humanize %}
+{% block body %}
+    <br/><br/>
+
+    <!-- ***** Main Banner Area Start ***** -->
+    <div class="main-banner" id="top">
+        <div class="container-fluid">
+            <div class="row">
+
+                <div class="col-lg-4">
+                    <div class="left-content">
+                        <div class="thumb">
+                            <!--write code here-->
+
+                            {%if totalCount != 0%}
+                            <div class="card" id="center" dir="rtl">
+                                <div class="card-info">
+                                    <br>
+                                    <h5 id="center">تعداد کالاها : </h5>
+                                    <h6 id="center">{{ totalCount }} تا </h6>
+                                    <br>
+                                    <h5 id="center">قیمت کل : </h5>
+                                    <h6 id="center">{{ totalPrice|intcomma }} تومان </h6>
+                                    <br>
+                                </div>
+                                <hr>
+                                <div class="total">
+                                    <div class="main-border-button">
+                                        <a href="/payment/" id="center" style="width: 100%"><h6>ثبت و پرداخت</h6></a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <style>
+                                .card {
+                                    border: 1px solid #ccc;
+                                    border-radius: 5px;
+                                    padding: 10px;
+                                    width: 200px;
+                                }
+
+                                .card-info p {
+                                    margin-bottom: 5px;
+                                }
+
+                            </style>
+                            {%else%}
+                            <div id="my-animation"></div>
+
+                            <script>
+                              lottie.loadAnimation({
+                                container: document.getElementById('my-animation'),
+                                renderer: 'svg', 
+                                loop: true,
+                                autoplay: true,
+                                path: "{%static 'clothes_app/images/empty.json'%}" // مسیر فایل JSON انیمیشن
+                              });
+                            </script>
+                            {%endif%}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-8">
+                    <!--write your code here-->
+                    
+                {%if totalCount != 0%}
+                    <section class="section" id="products">
+                        <div class="container" dir="rtl">
+                            <div class="row" dir="rtl">
+                                <!-- ***** Products ***** -->
+
+                                {% for item in cart %}
+
+                                    <style>
+                                        .card {
+                                            width: 100%;
+                                            background-color: #fff;
+                                            border-radius: 8px;
+                                            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                                            margin-bottom: 15px;
+                                        }
+
+                                        .card-body {
+                                            padding: 16px;
+                                        }
+
+                                    </style>
+
+                                    <div class="card" dir="rtl">
+                                        <div class="card-body" dir="rtl">
+                                            <div class="container" dir="rtl">
+                                                <div class="row" dir="rtl">
+
+
+                                                    <div class="col-lg-4 text-right">
+                                                        <div>
+                                                            <img id="right" src="{{ item.product.image.url }}" alt=""
+                                                                 style="width: 250px;" height="250px">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-4">
+                                                        {% load humanize %}
+                                                        <div class="right-content" dir="rtl">
+                                                            <h3 id="right">{{ item.product.title }}</h3>
+                                                            <div class="quantity-content" dir="rtl">
+                                                                <div class="right-content">
+                                                                    <h5 id="right" dir="rtl">تعداد سفارش</h5>
+                                                                </div>
+                                                                <br/>
+
+                                                                <div class="right-content">
+                                                                    <div class="quantity buttons_added">
+                                                                        <input type="button" value="-" class="minus" data-productid="{{ item.product.id }}-minus">
+                                                                        <input type="number" step="1" min="1" max="" name="quantity" value="{{ item.count }}" title="Qty" class="input-text qty text" size="4" pattern="" inputmode="">
+                                                                        <input type="button" value="+" class="plus" data-productid="{{ item.product.id }}-plus">
+                                                                    </div>
+                                                                </div>
+                                                                
+                                                                <script>
+                                                                    document.addEventListener("DOMContentLoaded", function () {
+                                                                        // یافتن همه دکمه‌های منهی و افزایش
+                                                                        var minusButtons = document.querySelectorAll(".minus");
+                                                                        var plusButtons = document.querySelectorAll(".plus");
+                                                                
+                                                                        // افزودن رویداد به هر دکمه منهی
+                                                                        minusButtons.forEach(function (minusButton) {
+                                                                            minusButton.addEventListener("click", function () {
+                                                                                sendData("minus", minusButton);
+                                                                            });
+                                                                        });
+                                                                
+                                                                        // افزودن رویداد به هر دکمه افزایش
+                                                                        plusButtons.forEach(function (plusButton) {
+                                                                            plusButton.addEventListener("click", function () {
+                                                                                sendData("plus", plusButton);
+                                                                            });
+                                                                        });
+                                                                
+                                                                        function sendData(action, button) {
+                                                                            // خواندن شناسه محصول از دیتا-آتریبیوت
+                                                                            var productID = button.getAttribute("data-productid");
+                                                                            
+                                                                            var encodedProductID = JSON.stringify(productID);
+                                                                
+                                                                            var url = window.location.href;
+                                                                            url += (url.indexOf('?') === -1 ? '?' : '&') + 'action=' + action + '&productID=' + encodeURIComponent(encodedProductID);
+                                                                
+                                                                            window.location.href = url;
+                                                                        }
+                                                                    });
+                                                                </script>
+                                                                
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-4">
+                                                        <div class="total">
+                                                            <div class="main-border-button">
+                                                                <a href="/deleteCart/{{ item.product.id }}/"
+                                                                   id="addToCart">حذف از سبد خرید</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                {% endfor %}
+                                <!-- ***** Products End ***** -->
+
+                            </div>
+                        </div>
+                    </section>
+                {%else%}
+                    <div class="col-lg-12" dir="rtl">
+                        <h3 id="center">سبد خرید شما خالی است!؟!</h3>
+                        <hr/>
+                        <h6 id="right" style="color: rgb(63, 104, 105);"> 
+                            " لحظه‌ای را از دست ندهید و با سرعت به صفحه‌ی محصولات ما سر بزنید. اینجاست که زیبایی در انتظار شماست ، همراه با محصولاتی که شما را شگفت‌زده خواهند کرد. از طرح‌های جدید و مدرن گرفته تا جنس‌های با کیفیت برتر، همه چیز در این دنیای لباس‌های استثنایی و متنوع وجود دارد. یک سری به محصولات ما بزنید تا سبد خریدتان را به طرزی کاملاً جذابی پر کنید!"
+                        </h6>
+                        <br/><br/><br/>
+                        <div class="total">
+                            <div class="main-border-button">
+                                <a href="{%url 'products'%}">محصولات ما</a>
+                            </div>
+                        </div>
+                    </div>
+                {%endif%}
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- ***** Main Banner Area End ***** -->
+{% endblock %}

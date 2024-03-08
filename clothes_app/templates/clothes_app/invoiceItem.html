@@ -1,0 +1,87 @@
+{% extends 'clothes_app/base.html' %}
+{% load static %}
+{% load humanize %}
+{% block body %}
+
+    <!-- ***** Main Banner Area Start ***** -->
+    <div class="main-banner" id="top">
+        <div class="container-fluid">
+            <div class="row" dir="rtl">
+
+                <style>
+                    .card {
+                        border: 1px solid #ccc;
+                        border-radius: 5px;
+                        padding: 10px;
+                        margin-bottom: 10px;
+                    }
+                    
+                    .card h3 {
+                        margin-top: 0;
+                    }
+                    
+                    .card p {
+                        margin-bottom: 0;
+                    }
+                </style>
+
+                <div class="col-lg-4">
+                    <div class="left-content">
+                        <div class="thumb">
+                            <!--write code here-->
+
+
+                            
+                            <div id="my-animation" style="height: 300px;"></div>
+
+                            <script>
+                              lottie.loadAnimation({
+                                container: document.getElementById('my-animation'),
+                                renderer: 'svg', 
+                                loop: false,
+                                autoplay: true,
+                                path: "{%static 'clothes_app/images/invoice.json'%}", // مسیر فایل JSON انیمیشن
+                                
+                              });
+                            </script>
+
+                        </div>
+
+                        
+                    </div>
+                </div>
+
+                <div class="col-lg-8">
+                    <!--write your code here-->
+                    
+                    
+                    <h3 id="center">لیست کالاهایی که در فاکتور موجود بودند :</h3>
+                    <br>
+                    <hr>
+                    <div id="scrollable-section">
+                        {% for item in invoice %}
+                        <div class="card">
+                            <h4 id="right">نام کالا: {{ item.product.title }}</h4>
+                            <p id="right">تعداد: {{ item.quantity }}</p>
+                            <p id="right">قیمت واحد: {{ item.price|intcomma }} تومان</p>
+                            <p id="right">قیمت کل: <span id="total{{ forloop.counter }}"></span></p>
+                        </div>
+                        {% endfor %}
+
+                    <script>
+                    {% for item in invoice %}
+                        var quantity{{ forloop.counter }} = {{ item.quantity }};
+                        var price{{ forloop.counter }} = {{ item.price }};
+                        var total{{ forloop.counter }} = quantity{{ forloop.counter }} * price{{ forloop.counter }};
+                        document.getElementById("total{{ forloop.counter }}").innerHTML = total{{ forloop.counter }}.toLocaleString() + " تومان";
+                    {% endfor %}
+                    </script>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- ***** Main Banner Area End ***** -->
+{% endblock %}

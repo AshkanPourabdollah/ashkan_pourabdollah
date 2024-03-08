@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    {% load static %}
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+
+    <title>فروشگاه هگزا</title>
+
+
+    <!--ajax jquery-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" type="text/css" href="{% static 'clothes_app/css/bootstrap.min.css' %}">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'clothes_app/css/font-awesome.css' %}">
+
+    <link rel="stylesheet" href="{% static 'clothes_app/css/templatemo-hexashop.css' %}">
+
+    <link rel="stylesheet" href="{% static 'clothes_app/css/owl-carousel.css' %}">
+
+    <link rel="stylesheet" href="{% static 'clothes_app/css/lightbox.css' %}">
+
+
+
+    <!--style-->
+    <style>
+
+        @font-face {
+            font-family: digi_maryam;
+            src: url('{%static 'clothes_app/fonts/Digi_Maryam_Regular.woff'%}') format("woff");
+        }
+
+        @font-face {
+            font-family: lalezar;
+            src: url('{%static 'clothes_app/fonts/Lalezar.woff'%}') format("woff");
+        }
+
+        #center{
+            font-family: lalezar;
+            text-align: center;
+        }
+        #right{
+            font-family: lalezar;
+            text-align: right;
+        }
+        #navFont{
+            font-family: lalezar;
+        }
+
+        .list {
+            display: flex;
+            overflow-x: auto;
+        }
+
+        
+    </style>
+
+    <!--ajax-->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!--lottie-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.4/lottie.min.js"></script>
+
+<!--
+
+TemplateMo 571 Hexashop
+
+https://templatemo.com/tm-571-hexashop
+
+-->
+    </head>
+    <body style="font-family: lalezar;">
+
+    
+      
+    <!-- ***** Preloader Start ***** -->
+    <div id="preloader">
+        <div class="jumper">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>  
+    <!-- ***** Preloader End ***** -->
+    
+    
+    <!-- ***** Header Area Start ***** -->
+    <header class="header-area header-sticky" dir="rtl">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav class="main-nav">
+                        <!-- ***** Logo Start ***** -->
+                        <a href="/" class="logo">
+                            <img src="{% static 'clothes_app/images/logo.png' %}">
+                        </a>
+                        <!-- ***** Logo End ***** -->
+                        <!-- ***** Menu Start ***** -->
+                        <ul class="nav">
+                    
+                            {%if request.session.login%}
+                            <li class="submenu">
+                                <a href="javascript:" id="navFont" dir="rtl">
+                                    <img src="{% static 'clothes_app/images/person.png'%}" width="30px" height="30px" id="center" style="margin-bottom: 10px;">
+                                    {{ loginPart }}
+                                </a>
+                                <ul dir="rtl">
+                                    <li id="right"><a href="{% url 'user' %}"> پروفایل </a></li>
+                                    <li id="right"><a href="{% url 'cart' %}">سبد خرید شما</a></li>
+                                    <li id="right"><a href="{% url 'logout' %}"> خروج</a></li>
+                                </ul>
+                            </li>
+                            {%endif%}
+                    
+                            <li class="scroll-to-section" id="navFont"><a href="/#top">خانه</a></li>
+                            <li class="scroll-to-section" id="navFont"><a href="/#men">لباس مردانه</a></li>
+                            <li class="scroll-to-section" id="navFont"><a href="/#women">لباس زنانه</a></li>
+                            <li class="scroll-to-section" id="navFont"><a href="/#kids">لباس بچگانه</a></li>
+                            <li class="submenu">
+                                <a href="javascript:" id="navFont" dir="rtl">صفحات</a>
+                                <ul dir="rtl">
+                                    <li id="right"><a href="{%url 'about'%}">درباره ی ما</a></li>
+                                    <li id="right"><a href="{%url 'products'%}">محصولات</a></li>
+                                    <li id="right"><a href="{%url 'contact'%}">تماس با ما</a></li>
+                                </ul>
+                            </li>
+                            <li class="scroll-to-section"><a href="{%url 'search'%}" id="navFont">جست و جو</a></li>
+                            {%if request.session.login == None%}
+                            <li class="scroll-to-section" id="navFont"><a href="{%url 'signin'%}">ثبت نام / ورود</a></li>
+                            {%endif%}
+                        </ul>        
+                        <a class='menu-trigger'>
+                            <span>منو</span>
+                        </a>
+                        <!-- ***** Menu End ***** -->
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ***** Header Area End ***** -->
+
+    {% block body%}
+    {%endblock%}
+
+  
+<!-- ***** Footer Start ***** -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="first-item">
+                    <div class="logo" id="center">
+                        <img src="{% static 'clothes_app/images/white-logo.png' %}" alt="hexashop ecommerce templatemo">
+                    </div>
+                </div>
+            </div>
+
+            
+            
+            <div class="col-lg-12">
+                <div class="under-footer">
+                    <p>Copyright © 2022 HexaShop Co. 
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+</body>
+<!-- ***** Footer Ends ***** -->
+
+    <!-- jQuery -->
+    <script src="{% static 'clothes_app/js/jquery-2.1.0.min.js' %}"></script>
+
+    <!-- Bootstrap -->
+    <script src="{% static 'clothes_app/js/popper.js' %}"></script>
+    <script src="{% static 'clothes_app/js/bootstrap.min.js' %}"></script>
+
+    <!-- Plugins -->
+    <script src="{% static 'clothes_app/js/owl-carousel.js' %}"></script>
+    <script src="{% static 'clothes_app/js/accordions.js' %}"></script>
+    <script src="{% static 'clothes_app/js/datepicker.js' %}"></script>
+    <script src="{% static 'clothes_app/js/scrollreveal.min.js' %}"></script>
+    <script src="{% static 'clothes_app/js/waypoints.min.js' %}"></script>
+    <script src="{% static 'clothes_app/js/jquery.counterup.min.js' %}"></script>
+    <script src="{% static 'clothes_app/js/imgfix.min.js' %}"></script> 
+    <script src="{% static 'clothes_app/js/slick.js' %}"></script> 
+    <script src="{% static 'clothes_app/js/lightbox.js' %}"></script> 
+    <script src="{% static 'clothes_app/js/isotope.js' %}"></script> 
+    
+    <!-- Global Init -->
+    <script src="{% static 'clothes_app/js/custom.js' %}"></script>
+</html>

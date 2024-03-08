@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>پرداخت</title>
+
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .card {
+            font-family: lalezar;
+            background-color: #F8F8F8;
+            width: 60%;
+            height: 300px;
+            border-radius: 20px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .success-message {
+            font-size: 18px;
+            color: #333333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .card-button {
+            background-color: #FF7F50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            border-radius: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        .card-button:hover {
+            background-color: #FF6347;
+        }
+    </style>
+
+
+    <script>
+        setTimeout(function () {
+            window.location.href = "/cart/";
+        }, 4000); // زمان انتقال به صفحه کارت بر حسب میلی‌ثانیه
+    </script>
+
+
+</head>
+<body>
+<div class="card">
+    <br>
+    <h1 class="success-message" dir="rtl">{{ text }}</h1><br><br>
+    <a href="/cart/" class="card-button">رفتن به سبد خرید</a>
+    <br>
+</div>
+</body>
+</html>

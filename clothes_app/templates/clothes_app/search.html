@@ -1,0 +1,147 @@
+{% extends 'clothes_app/base.html' %}
+{%block body%}
+{% load humanize %}
+{% load static %}
+<body>
+        <!-- ***** Explore Area Starts ***** -->
+        <section class="section" id="explore">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="left-content" dir="rtl">
+                            <br/><br/>
+                            <h2 id="right">در محصولات ما جست و جو کنید !</h2><hr/>
+                            <span></span>
+                            <div class="quote">
+   
+    
+                                <!--searching-->
+                               <form method="get" dir="rtl">
+                                
+                                    <select id="type" name="search_type" style="width: 100%; font-family: lalezar; text-align: right;">
+                                        <option value="">نوع جست و جو را انتخاب کنید</option> 
+                                        <option value="priceSelect">قیمت</option> 
+                                        <option value="titleSelect">عنوان</option>
+                                    </select>
+                                    <br/><br/>
+                                    <input type="text" name="search_query" placeholder="لطفا مقدار را وارد کنید ..." id="entry" 
+                                    style="width: 100%;font-family: lalezar; text-align: right;">
+                                    <br/><br/>
+                                    <button type="b" value="search" style="width: 100%;" onclick="check()">
+                                        <h4 id="center"><img src="{% static 'clothes_app/images/search.png'%}" style="width: 30px;">جست و جو</h4>
+                                        
+                                    </button>
+                                    
+                                                           
+                               </form>
+    
+                            </div>
+                            
+                            <div class="main-border-button">
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="right-content">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="leather">
+                                        <h4 id="center">کیف های چرمی</h4>
+                                        <span id="center">جدید ترین ست ها</span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="first-image">
+                                        <img src="{% static 'clothes_app/images/explore-image-01.jpg' %}" alt="">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="second-image">
+                                        <img src="{% static 'clothes_app/images/explore-image-02.jpg' %}" alt="">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="types">
+                                        <h4 id="center">انواع متنوع</h4>
+                                        <span id="center">بیش از 304 محصول</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- ***** Explore Area Ends ***** -->
+
+
+    
+        <!-- ***** Products Area Starts ***** -->
+        <section class="section" id="products">
+            <div class="container">
+
+                <!--if there is a product exists,we show the title-->
+                {% if data|length > 0 %}
+                <div class="row">
+                    <div class="col-lg-12" id="center">
+                        <h1>&nbsp;</h1>
+                        <h3>--نتیجه ی جست و جو--</h3>
+                        <h3>&nbsp;</h3><hr/>
+                    </div>
+                </div>
+                {% endif %}
+
+            </div>
+            <div class="container">
+                <div class="row" dir="rtl"  id="right">
+
+                <!--here we define our products-->
+                {% load humanize %}
+                {% for item in data %}
+                <div class="col-lg-4" dir="rtl" id="right">
+                    <div class="item" dir="rtl" id="right">
+                        <div class="thumb" dir="rtl" id="right">
+                            <div class="hover-content" id="right">
+                                <ul>
+                                    <li><a href="/single-product/{{item.title}}/"><i class="fa fa-eye"></i></a></li>
+                                    <li><a href="/single-product/{{item.title}}/"><i class="fa fa-shopping-cart"></i></a></li>
+                                </ul>
+                            </div>
+                            <img src="{{item.image.url}}" alt="" style="width: 350px;" height="350px">
+                        </div>
+                        <div class="down-content" dir="rtl" id="right">
+                            <h4 id="right">{{ item.title }}</h4>
+                            <span id="price">{{ item.price|intcomma }}</span>
+                            <span id="currency">تومان</span>
+                        </div>
+                    </div>
+                    <br/>
+                </div>
+                {% endfor %}
+                <!--ending defining products-->
+                </div>
+            </div>
+
+            
+
+        </section>
+        <!-- ***** Products Area Ends ***** -->
+
+
+
+        <script>
+            function check(){
+                var search_type = document.getElementById("type").value
+                var search_entry = document.getElementById("entry").value
+                if (search_type == ""){
+                    alert("لطفا نوع جست و جو را مشخص کنید")
+                }
+                else if(search_entry == ""){
+                    alert("لطفا مقدار را برای جست و جو وارد کنید")
+                }
+                
+            }
+        </script>
+</body>
+{%endblock%}

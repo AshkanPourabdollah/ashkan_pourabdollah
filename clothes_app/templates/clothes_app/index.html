@@ -1,0 +1,381 @@
+{% extends 'clothes_app/base.html' %}
+
+{% load static %}
+{%block body%}
+
+  
+    <!-- ***** Main Banner Area Start ***** -->
+    <div class="main-banner" id="top">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="left-content">
+                        <div class="thumb">
+                            <div class="inner-content" dir="rtl">
+                                <h4 id="center"> ما فروشگاه هگزا هستیم !</h4>
+                                <span id="center">ارائه دهنده ی با کیفیت ترین محصولات </span>
+
+                                {%if request.session.login == None%}
+                                <div class="main-border-button" dir="rtl">
+                                    <h4 id="center"><a href="{%url 'signin' %}" id="center">ثبت نام کنید ...</a></h4>
+                                    
+                                </div>
+                                {%endif%}
+
+                            </div>
+                            <img src="{% static 'clothes_app/images/left-banner-image.jpg' %}" alt="">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="right-content">
+                        <div class="row" dir="rtl">
+                            <div class="col-lg-6">
+                                <div class="right-first-image">
+                                    <div class="thumb">
+                                        <div class="inner-content">
+                                            <h4 id="center">زنانه</h4>
+                                            <span id="center">جدید ترین لباس های زنانه</span>
+                                        </div>
+                                        <div class="hover-content">
+                                            <div class="inner">
+                                                <h4 id="center">زنانه</h4>
+                                                <p id="center">ما ارائه دهنده ی جدید ترین و مدرن ترین لباس های زنانه هستیم!</p>
+                                                <div class="main-border-button">
+                                                    <a href="#women" id="center">بیشتر ببینید</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <img src="{% static 'clothes_app/images/baner-right-image-01.jpg' %}">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="right-first-image">
+                                    <div class="thumb">
+                                        <div class="inner-content">
+                                            <h4 id="center">مردانه</h4>
+                                            <span id="center">جدید ترین لباس های مردانه</span>
+                                        </div>
+                                        <div class="hover-content">
+                                            <div class="inner">
+                                                <h4 id="center">مردانه</h4>
+                                                <p id="center">ما ارائه دهنده ی جدید ترین و مدرن ترین لباس های مردانه هستیم!</p>
+                                                <div class="main-border-button">
+                                                    <a href="#men" id="center">بیشتر ببینید</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <img src="{% static 'clothes_app/images/baner-right-image-02.jpg' %}">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="right-first-image">
+                                    <div class="thumb">
+                                        <div class="inner-content">
+                                            <h4 id="center">کودکانه</h4>
+                                            <span id="center">جدید ترین لباس های کودکانه</span>
+                                        </div>
+                                        <div class="hover-content">
+                                            <div class="inner">
+                                                <h4 id="center">کودکانه</h4>
+                                                <p id="center">ما ارائه دهنده ی جدید ترین و مدرن ترین لباس های کودکانه هستیم!</p>
+                                                <div class="main-border-button">
+                                                    <a href="#kids" id="center">بیشتر ببینید</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <img src="{% static 'clothes_app/images/baner-right-image-03.jpg' %}">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="right-first-image">
+                                    <div class="thumb">
+                                        <div class="inner-content">
+                                            <h4 id="center">اکسسوری</h4>
+                                            <span id="center">جدید ترین اکسسوری ها</span>
+                                        </div>
+                                        <div class="hover-content">
+                                            <div class="inner">
+                                                <h4 id="center">اکسسوری ها</h4>
+                                                <p id="center">جالب ترین اکسسوری ها را در این فروشگاه پیدا کنید!</p>
+                                                <div class="main-border-button">
+                                                    <a href="#" id="center">بیشتر ببینید</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <img src="{% static 'clothes_app/images/baner-right-image-04.jpg' %}">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ***** Main Banner Area End ***** -->
+
+    <!-- ***** Men Area Starts ***** -->
+    <section class="section" id="men">
+        <div class="container" dir="rtl">
+            <div class="row" dir="rtl">
+                <div class="col-lg-6" dir="rtl">
+                    <div class="section-heading" dir="rtl">
+                        <h2 id="right">جدید ترین لباس های مردانه</h2>
+                        <span id="right">جزئیات تا جزئیات چیزی است که هگزا را از فروشگاه های دیگر های دیگر متمایز می کند.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="men-item-carousel">
+                        <div class="owl-men-item owl-carousel">
+
+                            <!--here we define our products-->
+                            {% load humanize %}
+                            {% for item in men %}
+                            <div class="item">
+                                <div class="thumb">
+                                    <div class="hover-content">
+                                        <ul>
+                                            <li><a href="/single-product/{{item.title}}/"><i class="fa fa-eye"></i></a></li>
+                                            <li><a href="/single-product/{{item.title}}/"><i class="fa fa-shopping-cart"></i></a></li>
+                                        </ul>
+                                    </div>
+                                    <img src="{{item.image.url}}" alt="" style="width: 350px;" height="350px">
+                                </div>
+                                <div class="down-content" id="right">
+                                    <h4>{{item.title}}</h4>
+                                    <span id="right">{{ item.price|intcomma }}</span>
+                                    <span>تومان</span>
+                                </div>
+                            </div>
+                            {% endfor %}
+                            <!--ending defining products-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ***** Men Area Ends ***** -->
+
+    <!-- ***** Women Area Starts ***** -->
+    <section class="section" id="women">
+        <div class="container">
+            <div class="row" dir="rtl">
+                <div class="col-lg-6" dir="rtl">
+                    <div class="section-heading" dir="rtl">
+                        <h2 id="right">جدید ترین لباس های زنانه</h2>
+                        <span id="right">جزئیات تا جزئیات چیزی است که هگزا را از فروشگاه های دیگر های دیگر متمایز می کند.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="women-item-carousel">
+                        <div class="owl-women-item owl-carousel">
+
+                            <!--here we define our products-->
+                            {% load humanize %}
+                            {% for item in women %}
+                            <div class="item">
+                                <div class="thumb">
+                                    <div class="hover-content">
+                                        <ul>
+                                            <li><a href="/single-product/{{item.title}}/"><i class="fa fa-eye"></i></a></li>
+                                            <li><a href="/single-product/{{item.title}}/"><i class="fa fa-shopping-cart"></i></a></li>
+                                        </ul>
+                                    </div>
+                                    <img src="{{item.image.url}}" alt="" style="width: 350px;" height="350px">
+                                </div>
+                                <div class="down-content">
+                                    <h4 id="right">{{item.title}}</h4>
+                                    <span id="right">{{ item.price|intcomma }}</span>
+                                    <span id="right">تومان</span>
+                                </div>
+                            </div>
+                            {% endfor %}
+                            <!--ending defining products-->
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ***** Women Area Ends ***** -->
+
+    <!-- ***** Kids Area Starts ***** -->
+    <section class="section" id="kids">
+        <div class="container">
+            <div class="row" dir="rtl">
+                <div class="col-lg-6" dir="rtl">
+                    <div class="section-heading" dir="rtl">
+                        <h2 id="right">جدید ترین لباس های بچگانه</h2>
+                        <span id="right">جزئیات تا جزئیات چیزی است که هگزا را از فروشگاه های دیگر های دیگر متمایز می کند.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="kid-item-carousel">
+                        <div class="owl-kid-item owl-carousel">
+
+                            <!--here we define our products-->
+                            {% load humanize %}
+                            {% for item in kids %}
+                            <div class="item">
+                                <div class="thumb">
+                                    <div class="hover-content">
+                                        <ul>
+                                            <li><a href="/single-product/{{item.title}}/"><i class="fa fa-eye"></i></a></li>
+                                            <li><a href="/single-product/{{item.title}}/"><i class="fa fa-shopping-cart"></i></a></li>
+                                        </ul>
+                                    </div>
+                                    <img src="{{item.image.url}}" alt="" style="width: 350px;" height="350px">
+                                </div>
+                                <div class="down-content">
+                                    <h4 id="right">{{item.title}}</h4>
+                                    <span id="right">{{ item.price|intcomma }}</span>
+                                    <span id="right">تومان</span>
+                                </div>
+                            </div>
+                            {% endfor %}
+                            <!--ending defining products-->
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ***** Kids Area Ends ***** -->
+
+    {%if request.session.login == None%}
+    <!-- ***** Subscribe Area Starts ***** -->
+    <div class="subscribe">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-7" dir="rtl">
+                    <div class="section-heading" dir="rtl">
+                        <h3 id="right">با ثبت نام در این سایت از تخفیف های ویژه بهرمند شوید !</h3><br/>
+                        <h6 id="right">اگر حسابی دارید وارد شوید...</h6>
+                        
+                        
+                    </div>
+                    <form id="subscribe" action="" method="post">
+                        {% csrf_token %}
+                        <div class="row">
+
+                            <div class="col-lg-5">
+                                <fieldset>
+                                  <input dir="rtl" name="phone" type="text" id="phone" placeholder="تلفن همراه" required="">
+                                </fieldset>
+                              </div>
+
+                            <div class="col-lg-5">
+                                <fieldset>
+                                  <input dir="rtl" name="password" type="password" id="password"  placeholder="رمز عبور" required="">
+                                </fieldset>
+                              </div>
+
+                          <div class="col-lg-2">
+                            <fieldset>
+                              <button type="submit" id="form-submit" class="main-dark-button"><i class="fa fa-paper-plane"></i></button>
+                            </fieldset>
+                          </div>
+                        </div>
+                        <br/><p id="right"> اگر حسابی ندارید <a href="{%url 'signin'%}"> ثبت نام کنید </a></p>
+                        <br/><h6 style="text-align: right; color: red;">{{error}}</h6>
+                    </form>
+                </div>
+                <div class="col-lg-4">
+                    <div class="row">
+                        <div class="col-6">
+                            <ul dir="rtl">
+                                <li id="right">آدرس فروشگاه : <br><span>شهرکرد - خیابان کاشانی</span></li>
+                                <li id="right">تلفن : <br><span>09391838025</span></li>
+                                <li id="right">اینستاگرام : <br><span>ashkan.pourabdollah@</span></li>
+                            </ul>
+                        </div>
+                        <div class="col-6">
+                            <ul dir="rtl">
+                                <li id="right">ساعت کار : <br><span>روزانه از 8 صبح تا 8 شب</span></li>
+                                <li id="right">ایمیل : <br><span>ashkanp09@gmail.com</span></li>
+                                <li id="right">تلگرام : <br><span>AshkanPourabdollah</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ***** Subscribe Area Ends ***** -->
+
+    {%else%}
+        <!-- ***** Subscribe Area Starts ***** -->
+        <div class="subscribe">
+            <div class="container">
+                <div class="row">
+                    
+                    <div class="col-lg-12">
+                        <div class="row">
+                            <div class="col-6">
+                                <ul dir="rtl">
+                                    <li id="right">آدرس فروشگاه : <br><span>شهرکرد - خیابان کاشانی</span></li>
+                                    <li id="right">تلفن : <br><span>09391838025</span></li>
+                                    <li id="right">اینستاگرام : <br><span>ashkan.pourabdollah@</span></li>
+                                </ul>
+                            </div>
+                            <div class="col-6">
+                                <ul dir="rtl">
+                                    <li id="right">ساعت کار : <br><span>روزانه از 8 صبح تا 8 شب</span></li>
+                                    <li id="right">ایمیل : <br><span>ashkanp09@gmail.com</span></li>
+                                    <li id="right">تلگرام : <br><span>AshkanPourabdollah</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ***** Subscribe Area Ends ***** -->
+    {%endif%}
+    
+    
+    
+
+
+    <script>
+
+       
+
+
+        $(function() {
+            var selectedClass = "";
+            $("p").click(function(){
+            selectedClass = $(this).attr("data-rel");
+            $("#portfolio").fadeTo(50, 0.1);
+                $("#portfolio div").not("."+selectedClass).fadeOut();
+            setTimeout(function() {
+              $("."+selectedClass).fadeIn();
+              $("#portfolio").fadeTo(50, 1);
+            }, 500);
+                
+            });
+        });
+
+    </script>
+
+
+{%endblock%}
